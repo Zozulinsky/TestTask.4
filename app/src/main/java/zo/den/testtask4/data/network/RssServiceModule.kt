@@ -6,8 +6,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import zo.den.testtask4.data.DataQuailifier
-import zo.den.testtask4.data.network.Service.RssService
+import zo.den.testtask4.data.network.service.RssService
 import zo.den.testtask4.presentation.ui.rss.RssLinkQualifier
 import zo.den.testtask4.presentation.ui.rss.RssModule
 

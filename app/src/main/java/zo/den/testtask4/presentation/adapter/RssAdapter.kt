@@ -36,7 +36,7 @@ class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>(){
         var cardView: CardView? = null
 
         fun bind(rssModel: RssModel){
-            itemView.name_rss.text = rssModel.title_rss
+
 
             itemView.setOnClickListener(View.OnClickListener {
                 listener?.onItemClick(rssModel)

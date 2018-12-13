@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import zo.den.testtask4.data.network.RssServiceModule
-import zo.den.testtask4.data.network.Service.RssService
 import javax.inject.Singleton
 
 @Module(includes = [RssServiceModule::class])

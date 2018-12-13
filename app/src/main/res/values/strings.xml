@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestTask.4</string>
+    <string name="title_message"><b>Заголовок</b></string>
+    <string name="nameofrss"><b>Название RSS</b></string>
+    <string name="date"><b>Дата</b></string>
+    <string name="content"><b>Контент</b></string>
+</resources>

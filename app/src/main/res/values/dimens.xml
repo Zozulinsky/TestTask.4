@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titlerssinmessages">20sp</dimen>
+    <dimen name="title_message">14sp</dimen>
+    <dimen name="date_messages">12sp</dimen>
+    <dimen name="content">12sp</dimen>
+    <dimen name="name_rss">14sp</dimen>
+</resources>

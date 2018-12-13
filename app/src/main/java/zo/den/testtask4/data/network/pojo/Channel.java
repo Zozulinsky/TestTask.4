@@ -1,65 +1,42 @@
 package zo.den.testtask4.data.network.pojo;
 
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import java.util.ArrayList;
-@Root(name = "channel")
+import java.util.List;
+
+@Root(name = "channel", strict = false)
 public class Channel {
-    @Element
-    private String title;
-    @Element
-    private String description;
-    @Element
-    private String link;
+    // Tricky part in Simple XML because the link is named twice
+    @ElementList(entry = "link", inline = true, required = false)
+    public List<Link> links;
 
-    @ElementList(entry = "item", inline = true)
-    private ArrayList<Item> item;
+    @ElementList(name = "item", required = true, inline = true)
+    public List<Item> itemList;
 
-    public String getTitle ()
-    {
-        return title;
-    }
 
-    public void setTitle (String title)
-    {
-        this.title = title;
-    }
+    @Element(name = "title", required = false)
+    String title;
+    @Element(name = "language", required = false)
+    String language;
 
-    public String getDescription ()
-    {
-        return description;
-    }
+    @Element(name = "ttl", required = false)
+    int ttl;
 
-    public void setDescription (String description)
-    {
-        this.description = description;
-    }
-
-    public String getLink ()
-    {
-        return link;
-    }
-
-    public void setLink (String link)
-    {
-        this.link = link;
-    }
-
-    public ArrayList<Item> getItem ()
-    {
-        return item;
-    }
-
-    public void setItem (ArrayList<Item>item)
-    {
-        this.item = item;
-    }
+    @Element(name = "pubDate", required = false)
+    String pubDate;
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [title = "+title+", description = "+description+", link = "+link+", item = "+item+"]";
+    public String toString() {
+        return "Channel{" +
+                "links=" + links +
+                ", itemList=" + itemList +
+                ", title='" + title + '\'' +
+                ", language='" + language + '\'' +
+                ", ttl=" + ttl +
+                ", pubDate='" + pubDate + '\'' +
+                '}';
     }
 }

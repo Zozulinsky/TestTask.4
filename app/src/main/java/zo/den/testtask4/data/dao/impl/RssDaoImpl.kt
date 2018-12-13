@@ -3,7 +3,6 @@ package zo.den.testtask4.data.dao.impl
 import io.reactivex.Observable
 import zo.den.testtask4.data.dao.RssDao
 import zo.den.testtask4.data.network.api.RssApi
-import zo.den.testtask4.data.network.pojo.Link
 import zo.den.testtask4.data.network.pojo.Rss
 import javax.inject.Inject
 

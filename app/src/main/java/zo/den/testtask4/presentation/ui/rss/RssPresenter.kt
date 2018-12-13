@@ -13,7 +13,7 @@ import javax.inject.Inject
 @InjectViewState
 class RssPresenter @Inject constructor() : MoxyPresenter<RssView>(){
     //TODO редактировать список RSS и после пополнения обновить отображаемые RSS
-    var linkRss: String = "http://www.old-hard.ru/rss/"
+    var linkRss: String = "http://www.calend.ru/img/export/calend.rss/"
 
     @field:Inject
     lateinit var rssDao: RssDao
@@ -29,7 +29,6 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>(){
 
         rssDao.getRss()
                 .map(RssModelMapper())
-                .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

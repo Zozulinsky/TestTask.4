@@ -46,7 +46,7 @@ class RssFragment : MoxyFragment(), RssView{
         }
     }
 
-    override fun showRssList(list: List<RssModel>) {
-        rssAdapter.list = list
+    override fun showRssList(rssModel: RssModel) {
+        rssAdapter.list.add(rssModel)
     }
 }

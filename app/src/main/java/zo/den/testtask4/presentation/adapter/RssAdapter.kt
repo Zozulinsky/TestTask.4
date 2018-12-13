@@ -13,7 +13,7 @@ class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>(){
 
     var listener : OnItemClickListener? = null
 
-    var list: List<RssModel> = emptyList()
+    var list: MutableList<RssModel> = arrayListOf()
         set(value){
             field = value
             notifyDataSetChanged()

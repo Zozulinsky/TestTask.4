@@ -1,7 +1,21 @@
 package zo.den.testtask4.data.network.pojo
 
-class Rss {
-    var channel: Channel? = null
+import org.simpleframework.xml.*
 
-    var version: String? = null
+@Root
+class Rss {
+
+    @Attribute
+    internal var version: String? = null
+
+    @Element
+    var channel: Channel? = null
+        internal set
+
+    override fun toString(): String {
+        return "RSS{" +
+                "version='" + version + '\''.toString() +
+                ", channel=" + channel +
+                '}'.toString()
+    }
 }

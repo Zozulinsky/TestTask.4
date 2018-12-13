@@ -7,5 +7,5 @@ import zo.den.testtask4.presentation.model.RssModel
 
 interface RssView : BaseView {
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun showRssList(list: List<RssModel>)
+    fun showRssList(rssModel: RssModel)
 }

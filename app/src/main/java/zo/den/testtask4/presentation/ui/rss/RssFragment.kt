@@ -1,6 +1,7 @@
 package zo.den.testtask4.presentation.ui.rss
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -46,7 +47,7 @@ class RssFragment : MoxyFragment(), RssView{
         }
     }
 
-    override fun showRssList(rssModel: RssModel) {
-        rssAdapter.list.add(rssModel)
+    override fun showRssList(sharedPreferences: SharedPreferences) {
+        rssAdapter.map = sharedPreferences.all
     }
 }

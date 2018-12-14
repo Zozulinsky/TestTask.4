@@ -5,4 +5,5 @@
     <dimen name="date_messages">12sp</dimen>
     <dimen name="content">12sp</dimen>
     <dimen name="name_rss">14sp</dimen>
+    <dimen name="elevation_fab">4dp</dimen>
 </resources>

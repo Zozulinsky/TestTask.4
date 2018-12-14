@@ -9,8 +9,4 @@ class RssModule {
     @Provides
     @RssQualifier
     fun provideRssAdapter(): RssAdapter = RssAdapter()
-
-    @Provides
-    @RssLinkQualifier
-    fun provideRssLink(): String = RssPresenter().linkRss
 }

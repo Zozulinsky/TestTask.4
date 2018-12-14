@@ -1,12 +1,11 @@
-package zo.den.testtask4.presentation.ui.rss
+package zo.den.testtask4.presentation.ui.content
 
-import android.content.SharedPreferences
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import zo.den.testtask4.presentation.base.BaseView
-import zo.den.testtask4.presentation.model.RssModel
+import zo.den.testtask4.presentation.model.ContentModel
 
-interface RssView : BaseView {
+interface ContentView: BaseView {
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun showRssList(sharedPreferences: SharedPreferences)
+    fun showContentList(contentModel: ContentModel)
 }

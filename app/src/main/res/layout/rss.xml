@@ -10,7 +10,7 @@
     android:paddingBottom="@dimen/paddingBottom">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
+        android:id="@+id/cardviewRss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="4dp"

@@ -3,10 +3,9 @@ package zo.den.testtask4.data
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import zo.den.testtask4.data.network.RssServiceModule
 import javax.inject.Singleton
 
-@Module(includes = [RssServiceModule::class])
+@Module
 class NetworkModule {
 
     @Provides

@@ -1,18 +1,16 @@
 package zo.den.testtask4.presentation.ui.rss
 
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
-import android.net.Uri
+import android.database.sqlite.SQLiteDatabase
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.HttpUrl
 import ru.terrakok.cicerone.Router
-import zo.den.testtask4.Const
 import zo.den.testtask4.data.dao.RssDao
+import zo.den.testtask4.data.database.LinkDB
+import zo.den.testtask4.data.database.LinkSQLiteOpenHelper
+import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.ScreenFactory
 import zo.den.testtask4.presentation.base.MoxyPresenter
-import zo.den.testtask4.presentation.mapper.RssModelMapper
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
 
@@ -28,7 +26,22 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.showRssList(rssDao.getRss())
+        val sqlOpenHelper: LinkSQLiteOpenHelper = LinkSQLiteOpenHelper(this.context)
+        val db: SQLiteDatabase? = sqlOpenHelper.writableDatabase
+        rssDao.getRssLinks()
+                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                           viewState.showRssList(it)
+                        },{
+                }
+                ).toCompositeDisposable()
+    }
+
+    fun onRss(linkDataEntity: LinkDataEntity){
+        router.navigateTo(ScreenFactory.getContentScreen(linkDataEntity.name, linkDataEntity.link))
     }
 
 

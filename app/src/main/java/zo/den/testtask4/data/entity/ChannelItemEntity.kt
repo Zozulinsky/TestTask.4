@@ -1,10 +1,10 @@
-package zo.den.testtask4.data.network.pojo
+package zo.den.testtask4.data.entity
 
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "item", strict = false)
-class Item @JvmOverloads constructor() {
+class ChannelItemEntity {
 
     @set:Element(name = "title", required = true)
     @get:Element(name = "title", required = true)
@@ -38,7 +38,7 @@ class Item @JvmOverloads constructor() {
     var source: String? = null//	The RSS channel that the item came from. More.
 
     override fun toString(): String {
-        return "Item{" +
+        return "ChannelItemEntity{" +
                 "title='" + title + '\''.toString() +
                 ", link='" + link + '\''.toString() +
                 ", description='" + description + '\''.toString() +

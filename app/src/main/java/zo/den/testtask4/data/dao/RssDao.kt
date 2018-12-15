@@ -1,15 +1,16 @@
 package zo.den.testtask4.data.dao
 
-import android.content.SharedPreferences
+import io.reactivex.Completable
 import io.reactivex.Observable
-import okhttp3.HttpUrl
-import zo.den.testtask4.data.network.pojo.Rss
+import zo.den.testtask4.data.entity.LinkDataEntity
 
 interface RssDao {
-    fun getRss() : SharedPreferences
+    fun updateRssLink(linkEntity: LinkDataEntity) : Completable
 
-    fun saveRss(rssMap: HashMap<String, String>) : SharedPreferences
+    fun removeRssLink(linkEntity: LinkDataEntity): Completable
 
-    fun removeRss()
+    fun addRssLink(linkEntity: LinkDataEntity): Completable
+
+    fun getRssLinks() : Observable<LinkDataEntity>
 
 }

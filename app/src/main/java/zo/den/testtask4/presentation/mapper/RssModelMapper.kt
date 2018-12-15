@@ -1,13 +1,13 @@
 package zo.den.testtask4.presentation.mapper
 
-import android.content.SharedPreferences
 import io.reactivex.functions.Function
+import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.model.RssModel
 
-class RssModelMapper(sharedPreferences: SharedPreferences) : Function<SharedPreferences, RssModel> {
+class RssModelMapper() : Function<LinkDataEntity, RssModel> {
 
-    override fun apply(t: SharedPreferences): RssModel? {
+    override fun apply(t: LinkDataEntity): RssModel? {
 
-        return RssModel(t.all)
+        return t.id?.let { RssModel(it, t.name, t.link) }
     }
 }

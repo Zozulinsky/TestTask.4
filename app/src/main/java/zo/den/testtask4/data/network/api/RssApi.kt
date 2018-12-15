@@ -6,7 +6,7 @@ import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import zo.den.testtask4.data.network.pojo.Rss
+import zo.den.testtask4.data.entity.RssEntity
 import zo.den.testtask4.data.network.service.RssService
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,7 +17,7 @@ class RssApi @Inject constructor(okHttpClient: OkHttpClient){
 
     private val okHttpClient: OkHttpClient = okHttpClient
 
-    fun getRss(httpUrl: HttpUrl): Single<Rss> {
+    fun getRss(httpUrl: HttpUrl): Single<RssEntity> {
         val rssService = Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(httpUrl.scheme() + "://" + httpUrl.host() + "/")

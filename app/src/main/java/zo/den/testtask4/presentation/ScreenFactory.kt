@@ -10,17 +10,7 @@ object ScreenFactory {
         return RssScreen()
     }
 
-    fun getContentScreen(url : String): SupportAppScreen{
-        return ContentScreen(HttpUrl.parse(url)!!)
+    fun getContentScreen(name: String, link: String): SupportAppScreen{
+        return ContentScreen(name, link)
     }
-
-
-    //TODO добавить параметры, которые необходимо изменить
-   /* fun getActionScreen(): SupportAppScreen{
-        return ActionScreen()
-    }
-
-    fun getMessagesScreen(): SupportAppScreen{
-        return ActionScreen()
-    }*/
 }

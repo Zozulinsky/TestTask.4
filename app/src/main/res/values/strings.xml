@@ -4,4 +4,12 @@
     <string name="nameofrss"><b>Название RSS</b></string>
     <string name="date"><b>Дата</b></string>
     <string name="content"><b>Контент</b></string>
+    <string name="add_rss">Добавить RSS</string>
+    <string name="input_address_rss">Введите адрес RSS</string>
+    <string name="text_addbtn">Добавить</string>
+    <string name="text_cancelbtn">Отмена</string>
+    <string name="title_addDialog">Введите адрес RSS:</string>
+    <string name="input_name_rss">Введите название RSS</string>
+    <string name="change_rss">Изменить RSS</string>
+    <string name="remove_rss">Удалить RSS</string>
 </resources>

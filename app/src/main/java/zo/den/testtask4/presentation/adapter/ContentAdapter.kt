@@ -6,20 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.messages.view.*
+import kotlinx.android.synthetic.main.rss.view.*
 import zo.den.testtask4.R
+import zo.den.testtask4.data.entity.ChannelItemEntity
+import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.model.ContentModel
 
 class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
 
-    var listener: OnItemClickListener? = null
+    var listener: ContentAdapter.OnItemClickListener? = null
 
-    var list: MutableList<ContentModel> = arrayListOf()
+    var list: List<ChannelItemEntity> = emptyList<ChannelItemEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ContentViewHolder {
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ContentAdapter.ContentViewHolder {
         return ContentViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.rss, p0, false))
     }
 
@@ -27,7 +30,7 @@ class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() 
         return list.size
     }
 
-    override fun onBindViewHolder(p0: ContentViewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: ContentAdapter.ContentViewHolder, p1: Int) {
         p0.bind(list[p1])
     }
 
@@ -35,16 +38,19 @@ class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() 
     inner class ContentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var cardView: CardView? = null
 
-        fun bind(contentModel: ContentModel) {
-            cardView = itemView.cardview
-
-            itemView.setOnClickListener(View.OnClickListener {
-                listener?.onItemClick(contentModel)
+        fun bind(channelItemEntity: ChannelItemEntity) {
+            cardView = itemView.cardviewRss
+            itemView.title_message.text = channelItemEntity.title
+            itemView.date.text = channelItemEntity.pubDate
+            itemView.content.text = channelItemEntity.description
+            itemView.setOnClickListener({
+                listener?.onItemClick(channelItemEntity)
             })
+
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(contentModel: ContentModel)
+        fun onItemClick(channelItemEntity: ChannelItemEntity)
     }
 }

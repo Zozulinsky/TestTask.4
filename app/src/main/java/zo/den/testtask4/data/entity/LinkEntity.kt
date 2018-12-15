@@ -1,4 +1,4 @@
-package zo.den.testtask4.data.network.pojo
+package zo.den.testtask4.data.entity
 
 
 import org.simpleframework.xml.Attribute
@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root
 import org.simpleframework.xml.Text
 
 @Root(name = "link", strict = false)
-class Link {
+class LinkEntity {
     @set:Attribute(required = false)
     @get:Attribute(required = false)
     var href: String? = null

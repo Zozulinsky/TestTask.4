@@ -17,13 +17,4 @@
         android:layout_height="0dp"/>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/myFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/add_fab_round"
-        app:elevation="@dimen/elevation_fab"
-        app:backgroundTint="@color/color_fab"
-        />
-
 </android.support.constraint.ConstraintLayout>

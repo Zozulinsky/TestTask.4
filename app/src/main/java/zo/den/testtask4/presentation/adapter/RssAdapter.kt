@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.rss.view.*
 import zo.den.testtask4.R
-import zo.den.testtask4.presentation.model.RssModel
+import zo.den.testtask4.data.entity.LinkDataEntity
 
-class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>(){
+class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>() {
 
-    var listener : OnItemClickListener? = null
+    var listener: OnItemClickListener? = null
 
-    var map: Map<String, *> = mapOf()
-        set(value){
+    var list: List<LinkDataEntity> = mutableListOf()
+        set(value) {
             field = value
             notifyDataSetChanged()
         }
@@ -24,28 +24,34 @@ class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return map.size
+        return list.size
     }
 
     override fun onBindViewHolder(p0: RssViewHolder, p1: Int) {
-        p0.bind(map.getp1)
+        p0.bind(list[p1])
     }
 
 
-    inner class RssViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class RssViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var cardView: CardView? = null
 
-        fun bind(rssModel: RssModel){
+        fun bind(linkDataEntity: LinkDataEntity) {
             cardView = itemView.cardviewRss
-
-
+            itemView.nameofrss.text = linkDataEntity.name
             itemView.setOnClickListener(View.OnClickListener {
-                listener?.onItemClick(rssModel)
+                listener?.onItemClick(linkDataEntity)
             })
+            itemView.setOnLongClickListener(
+                    {
+                        listener?.onItemLongClick(linkDataEntity)
+                        true
+                    }
+            )
         }
     }
 
-    interface OnItemClickListener{
-        fun onItemClick(rssModel: RssModel)
+    interface OnItemClickListener {
+        fun onItemClick(linkDataEntity: LinkDataEntity)
+        fun onItemLongClick(linkDataEntity: LinkDataEntity)
     }
 }

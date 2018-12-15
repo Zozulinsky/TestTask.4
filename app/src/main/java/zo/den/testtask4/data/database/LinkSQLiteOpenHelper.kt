@@ -7,16 +7,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LinkSQLiteOpenHelper  : SQLiteOpenHelper {
+class LinkSQLiteOpenHelper @Inject constructor(context: Context)
+    : SQLiteOpenHelper(context, "links.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE links(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "name TEXT, link TEXT)")
     }
 
+
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
-    @Inject
-    constructor(context: Context) : super(context, "links.db", null, 1)
 
 }

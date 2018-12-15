@@ -32,7 +32,6 @@ class LinkDB @Inject constructor() {
 
     }
 
-
     fun insertLink(linkEntity: LinkDataEntity) {
         synchronized(this) {
             sqLiteOpenHelper.writableDatabase.use {

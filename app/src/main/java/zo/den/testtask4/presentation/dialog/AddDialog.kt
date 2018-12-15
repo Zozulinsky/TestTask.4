@@ -35,7 +35,6 @@ class AddDialog : DialogFragment() {
         val inputRss: EditText = addDialog.findViewById(R.id.input_url_rss)
         val inputNameRss: EditText = addDialog.findViewById(R.id.input_name_rss)
         addRss.setOnClickListener({
-
             val rss: String = inputRss.text.toString()
             val name: String = inputNameRss.text.toString()
             val linkDataEntity: LinkDataEntity? = LinkDataEntity(null, rss, name)

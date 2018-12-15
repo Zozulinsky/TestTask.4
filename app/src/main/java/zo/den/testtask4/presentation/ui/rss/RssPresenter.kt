@@ -26,8 +26,6 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        val sqlOpenHelper: LinkSQLiteOpenHelper = LinkSQLiteOpenHelper(this.context)
-        val db: SQLiteDatabase? = sqlOpenHelper.writableDatabase
         rssDao.getRssLinks()
                 .toList()
                 .subscribeOn(Schedulers.io())

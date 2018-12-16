@@ -1,15 +1,24 @@
 <resources>
-    <string name="app_name">TestTask.4</string>
+    <string name="app_name">RSS reader</string>
     <string name="title_message"><b>Заголовок</b></string>
-    <string name="nameofrss"><b>Название RSS</b></string>
+    <string name="nameofrss"><b>Название RSS:</b></string>
     <string name="date"><b>Дата</b></string>
-    <string name="content"><b>Контент</b></string>
+    <string name="content"><b>Подробности</b></string>
     <string name="add_rss">Добавить RSS</string>
-    <string name="input_address_rss">Введите адрес RSS</string>
+    <string name="example_address_rss">https://www.reddit.com/.rss</string>
     <string name="text_addbtn">Добавить</string>
     <string name="text_cancelbtn">Отмена</string>
     <string name="title_addDialog">Введите адрес RSS:</string>
-    <string name="input_name_rss">Введите название RSS</string>
+    <string name="example_name_rss">например, Reddit</string>
     <string name="change_rss">Изменить RSS</string>
     <string name="remove_rss">Удалить RSS</string>
+    <string name="btn_edit_rss">Изменить</string>
+    <string name="title_RssFragment">Список RSS-лент</string>
+    <string name="please_check_Rss">Пожалуйста, проверьте адрес RSS-ленты</string>
+    <string name="rss_no_connection"><b>Не удалось подключиться к RSS. \nПроверьте правильность введенного адреса.</b></string>
+    <string name="label_nameRss">Имя RSS:</string>
+    <string name="ladel_urlRss">Адрес RSS:</string>
+    <string name="label_addRss">Добавить RSS</string>
+    <string name="label_editRss">Изменить RSS</string>
+    <string name="start_url">http://</string>
 </resources>

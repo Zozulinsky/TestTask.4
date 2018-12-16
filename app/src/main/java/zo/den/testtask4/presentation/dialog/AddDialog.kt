@@ -1,54 +1,43 @@
 package zo.den.testtask4.presentation.dialog
 
-import android.content.DialogInterface
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import zo.den.testtask4.R
+import android.app.Dialog
 import android.os.Bundle
-import android.view.ViewGroup
+import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import com.arellomobile.mvp.presenter.InjectPresenter
-import zo.den.testtask4.data.database.LinkDB
-import zo.den.testtask4.data.entity.LinkDataEntity
-import zo.den.testtask4.presentation.adapter.RssAdapter
-import zo.den.testtask4.presentation.ui.rss.RssFragment
-import zo.den.testtask4.presentation.ui.rss.RssPresenter
-import zo.den.testtask4.presentation.ui.rss.RssQualifier
-import javax.inject.Inject
+import android.view.ViewGroup
+import kotlinx.android.synthetic.main.dialog_add.*
+import zo.den.testtask4.R
 
+class AddDialog : DialogFragment() {
 
-class AddDialog : DialogFragment(){
+    companion object {
+        fun getInstance(): AddDialog = AddDialog()
+    }
 
     var listener: OnAddListener? = null
 
-    override fun onAttachFragment(childFragment: Fragment?) {
-        super.onAttachFragment(childFragment)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        input_name_rss.setSelection(input_name_rss.text.length)
+        input_url_rss.setSelection(input_url_rss.text.length)
+        btn_add.setOnClickListener {
+            listener?.onAddRss(input_name_rss.text.toString(), input_url_rss.text.toString())
+            this.dismiss()
+        }
+        btn_cancel.setOnClickListener {
+            this.dismiss()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.setTitle(getString(R.string.title_addDialog))
-        val addDialog = inflater.inflate(R.layout.dialog_add, container, false)
-        val addRss: Button = addDialog.findViewById(R.id.btn_add)
-        val inputRss: EditText = addDialog.findViewById(R.id.input_url_rss)
-        val inputNameRss: EditText = addDialog.findViewById(R.id.input_name_rss)
-        addRss.setOnClickListener({
-            listener?.onAddRss(inputNameRss.text.toString(), inputRss.text.toString())
-            this.dismiss()
-        })
-        val cancel: Button = addDialog.findViewById(R.id.btn_cancel)
-        cancel.setOnClickListener({
-            this.dismiss()
-        })
-        return addDialog
+        return inflater.inflate(R.layout.dialog_add, container, false)
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
-        //TODO добавить обновление линков на первом фрагменте после закрытия диалога
-        super.onDismiss(dialog)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.setTitle(R.string.add_rss)
+        return dialog
     }
 
     interface OnAddListener {

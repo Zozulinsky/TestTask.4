@@ -6,14 +6,17 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.HttpUrl
 import ru.terrakok.cicerone.Router
 import zo.den.testtask4.data.dao.ContentDao
-import zo.den.testtask4.data.dao.RssDao
 import zo.den.testtask4.data.entity.ChannelItemEntity
 import zo.den.testtask4.presentation.base.MoxyPresenter
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+import android.net.Uri
+
 
 @InjectViewState
-class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>(){
+class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>() {
 
     @field:Inject
     @field:ContentQualifier("linkRss")
@@ -28,21 +31,39 @@ class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>(){
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
-        //TODO добавить проверку линка
-        contentDao.getRss(HttpUrl.parse(link)!!)
-                .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            viewState.showContentList(it)
-                        },{
-                }
-                ).toCompositeDisposable()
+        update()
     }
 
-    fun onContent(channelItemEntity: ChannelItemEntity){
-        //TODO добавить логику открытия WebView при наличии ссылки
+    fun onContent(channelItemEntity: ChannelItemEntity) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(channelItemEntity.link))
+        viewState.openBrowser(intent)
+    }
+
+    fun onUpdate() {
+        update()
+    }
+
+    private fun update() {
+        val httpUrl: HttpUrl? = HttpUrl.parse(link)
+        if (httpUrl!=null){
+            contentDao.getRss(httpUrl)
+                    .toList()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        viewState.showProgress()
+                    }
+                    .doAfterTerminate {
+                        viewState.hideProgress()
+                    }
+                    .subscribe(
+                            {
+                                viewState.showContentList(it)
+                            }, {
+                        viewState.showNoConnection()
+                    }
+                    ).toCompositeDisposable()}
+        else {viewState.showNoConnection()}
+
     }
 }

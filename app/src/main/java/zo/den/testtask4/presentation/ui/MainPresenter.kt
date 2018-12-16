@@ -16,9 +16,6 @@ class MainPresenter @Inject constructor() : MoxyPresenter<MainView>() {
     fun onCreate(isRestore: Boolean) {
         if (!isRestore){
             router.newRootScreen(ScreenFactory.getRssScreen())
-
         }
-
-
     }
 }

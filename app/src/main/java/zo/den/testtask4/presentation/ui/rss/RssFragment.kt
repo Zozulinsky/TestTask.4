@@ -2,30 +2,34 @@ package zo.den.testtask4.presentation.ui.rss
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.rv_rss.*
+import kotlinx.android.synthetic.main.fragment_rss.*
+import kotlinx.android.synthetic.main.fragment_content.*
 import zo.den.testtask4.R
 import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.adapter.RssAdapter
 import zo.den.testtask4.presentation.base.MoxyFragment
 import zo.den.testtask4.presentation.dialog.ActionDialog
 import zo.den.testtask4.presentation.dialog.AddDialog
+import zo.den.testtask4.presentation.dialog.EditDialog
 import javax.inject.Inject
 import javax.inject.Provider
 
 class RssFragment : MoxyFragment(), RssView {
 
     companion object {
+        private const val TAG_ADD_DIALOG = "add_rss"
+        private const val TAG_ACTION_DIALOG = "dialog_action"
+        private const val TAG_EDIT_DIALOG = "edit_dialog"
         fun getInstance(): RssFragment = RssFragment()
     }
 
-    override val layout: Int = R.layout.rv_rss
+    override val layout: Int = R.layout.fragment_rss
 
     @field:Inject
     lateinit var presenterProvider: Provider<RssPresenter>
@@ -42,6 +46,7 @@ class RssFragment : MoxyFragment(), RssView {
 
     override fun onViewPrepare(savedInstanceState: Bundle?) {
         super.onViewPrepare(savedInstanceState)
+        setSupportTitle(getString(R.string.title_RssFragment))
         val context: Context? = this.context
         rss_list.adapter = rssAdapter
         rss_list.layoutManager = LinearLayoutManager(context)
@@ -51,67 +56,66 @@ class RssFragment : MoxyFragment(), RssView {
             }
 
             override fun onItemLongClick(linkDataEntity: LinkDataEntity) {
-                showActionDialog(ActionDialog.getInstance(linkDataEntity))
-
+                presenter.onRssLong(linkDataEntity)
             }
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_rss, container, false);
+        val fab = view.findViewById(R.id.fab) as FloatingActionButton
+        fab.setOnClickListener {
+            presenter.onShowAddDialog()
+        }
+        return view
 
-    override fun onResume() {
-        super.onResume()
     }
-
 
     override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
-        if (childFragment is AddDialog && childFragment.tag == "add_rss") {
+        if (childFragment is AddDialog && childFragment.tag == TAG_ADD_DIALOG) {
             childFragment.listener = object : AddDialog.OnAddListener {
                 override fun onAddRss(name: String, link: String) {
-                    presenter.addRss(name, link)
+                    presenter.onAddRss(name, link)
                 }
             }
         }
-        if (childFragment is ActionDialog && childFragment.tag == "action_dialog") {
+        if (childFragment is ActionDialog && childFragment.tag == TAG_ACTION_DIALOG ) {
             childFragment.listener = object : ActionDialog.OnActionListener {
-                override fun editRss() {
-                    //TODO добавить логику
+                override fun onEditRss(linkDataEntity: LinkDataEntity) {
+                    presenter.onOpenEditLinkDialog(linkDataEntity)
                 }
 
-                override fun removeRss() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                override fun onRemoveRss(linkDataEntity: LinkDataEntity) {
+                    presenter.onRemoveLinkDataEntity(linkDataEntity)
                 }
             }
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.rss_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.add) {
-            showAddDialog(AddDialog())
+        if (childFragment is EditDialog && childFragment.tag == TAG_EDIT_DIALOG ) {
+            childFragment.listener = object : EditDialog.OnEditListener {
+                override fun onEditRss(linkDataEntity: LinkDataEntity) {
+                    presenter.onUpdateLinkDataEntity(linkDataEntity)
+                }
+            }
         }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun showRssList(list: List<LinkDataEntity>) {
         rssAdapter.list = list
     }
-
-    fun showAddDialog(dialog: AddDialog) {
-        dialog.show(childFragmentManager, "add_rss")
+    override fun showAddDialog() {
+        val dialog: AddDialog = AddDialog.getInstance()
+        dialog.show(childFragmentManager, TAG_ADD_DIALOG)
     }
 
-    fun showActionDialog(dialog: ActionDialog) {
-        dialog.show(childFragmentManager, "action_dialog")
+    override fun showActionDialog(linkDataEntity: LinkDataEntity) {
+       val dialog: ActionDialog = ActionDialog.getInstance(linkDataEntity)
+        dialog.show(childFragmentManager, TAG_ACTION_DIALOG)
     }
 
-
+    override fun showEditDialog(linkDataEntity: LinkDataEntity) {
+        val dialog: EditDialog = EditDialog.getInstance(linkDataEntity)
+        dialog.show(childFragmentManager, TAG_EDIT_DIALOG)
+    }
 }

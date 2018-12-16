@@ -13,9 +13,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-class RssApi @Inject constructor(okHttpClient: OkHttpClient){
-
-    private val okHttpClient: OkHttpClient = okHttpClient
+class RssApi @Inject constructor(private val okHttpClient: OkHttpClient){
 
     fun getRss(httpUrl: HttpUrl): Single<RssEntity> {
         val rssService = Retrofit.Builder()

@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.messages.view.*
+import kotlinx.android.synthetic.main.content.view.*
 import kotlinx.android.synthetic.main.rss.view.*
 import zo.den.testtask4.R
 import zo.den.testtask4.data.entity.ChannelItemEntity
-import zo.den.testtask4.data.entity.LinkDataEntity
-import zo.den.testtask4.presentation.model.ContentModel
 
 class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
 
@@ -23,7 +21,7 @@ class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() 
         }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ContentViewHolder {
-        return ContentViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.messages, p0, false))
+        return ContentViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.content, p0, false))
     }
 
     override fun getItemCount(): Int {

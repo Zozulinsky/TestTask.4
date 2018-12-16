@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="300dp"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/paddingBottom"
-        android:text="@string/label_addRss"
+        android:text="@string/label_editRss"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp" />
@@ -28,14 +27,12 @@
             android:text="@string/ladel_urlRss" />
 
         <EditText
-            android:id="@+id/input_url_rss"
-            android:layout_width="match_parent"
+            android:id="@+id/edit_url_rss"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="textUri"
-            android:text="@string/start_url"
-            android:textColor="#000000"
-            />
+            android:textColor="#000000" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,30 +49,31 @@
             android:text="@string/label_nameRss" />
 
         <EditText
-            android:id="@+id/input_name_rss"
-            android:layout_width="match_parent"
+            android:id="@+id/edit_name_rss"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="@string/example_name_rss"
             android:inputType="text"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
         android:divider="@drawable/separator_vertical"
         android:dividerPadding="4dp"
         android:showDividers="middle">
 
         <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_addbtn"
+            android:text="@string/btn_edit_rss"
             android:background="@color/colorBtnActionDlg"
             android:textColor="@color/colorTextOnView"/>
 

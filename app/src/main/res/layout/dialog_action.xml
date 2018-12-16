@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:minWidth="200dp"
+    android:layout_height="match_parent"
+    android:divider="@drawable/separator_horizontal"
+    android:dividerPadding="4dp"
+    android:showDividers="middle"
+    android:orientation="vertical"
+   >
+    <Button
+        android:id="@+id/edit_rss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_rss"
+        android:background="@color/colorBtnActionDlg"
+        android:textColor="@color/colorTextOnView"/>
+
+    <Button
+        android:id="@+id/remove_rss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_rss"
+        android:background="@color/colorBtnActionDlg"
+        android:textColor="@color/colorTextOnView"/>
+
+    <Button
+        android:id="@+id/cancel_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_cancelbtn"
+        android:background="@color/colorBtnActionDlg"
+        android:textColor="@color/colorTextOnView"/>
+
+</LinearLayout>

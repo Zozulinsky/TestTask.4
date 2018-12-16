@@ -5,13 +5,11 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import kotlinx.android.synthetic.main.dialog_action.*
 import zo.den.testtask4.R
 import zo.den.testtask4.data.entity.LinkDataEntity
-import zo.den.testtask4.presentation.ui.content.ContentFragment
-import javax.inject.Inject
 
-class ActionDialog : DialogFragment(){
+class ActionDialog : DialogFragment() {
 
     companion object {
         private const val KEY_RSS: String = "rss"
@@ -22,40 +20,33 @@ class ActionDialog : DialogFragment(){
         }
     }
 
-    fun getDataEntity(): LinkDataEntity{
-        val linkDataEntity: LinkDataEntity = this.arguments?.getParcelable(KEY_RSS)!!
-        return linkDataEntity
-    }
-
-    @field:Inject
-    @LinkQualifier
-    lateinit var linkDataEntity: LinkDataEntity
-
     var listener: OnActionListener? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-        val actionDialog = inflater.inflate(R.layout.action_dialog, container, false)
-        val editRss: Button = actionDialog.findViewById(R.id.edit_rss)
-        val removeRss: Button = actionDialog.findViewById(R.id.remove_rss)
-        val cancel: Button = actionDialog.findViewById(R.id.cancel_action)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val data: LinkDataEntity? = this.arguments?.getParcelable(KEY_RSS)
+        edit_rss.setOnClickListener {
+            if (data != null)
+                listener?.onEditRss(data)
+            this.dismiss()
+        }
+        remove_rss.setOnClickListener {
+            if (data != null)
+                listener?.onRemoveRss(data)
+            this.dismiss()
+        }
 
-        editRss.setOnClickListener({
-            listener?.editRss()
+        cancel_action.setOnClickListener {
             this.dismiss()
-        })
-        removeRss.setOnClickListener({
-            //TODO добавить логику удаления RSS
-            this.dismiss()
-        })
-
-        cancel.setOnClickListener({
-            this.dismiss()
-        })
+        }
     }
 
-    interface OnActionListener{
-        fun editRss()
-        fun removeRss()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.dialog_action, container, false)
+    }
+
+    interface OnActionListener {
+        fun onEditRss(linkDataEntity: LinkDataEntity)
+        fun onRemoveRss(linkDataEntity: LinkDataEntity)
     }
 }

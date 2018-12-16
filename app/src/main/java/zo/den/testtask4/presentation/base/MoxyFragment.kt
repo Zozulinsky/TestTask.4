@@ -2,6 +2,7 @@ package zo.den.testtask4.presentation.base
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,5 +34,10 @@ abstract class MoxyFragment : MvpAppCompatFragment(), BaseView {
 
     protected open fun onViewPrepare(savedInstanceState: Bundle?) {
 
+    }
+
+    protected fun setSupportTitle(title: String){
+        val activity = getActivity() as? AppCompatActivity
+        activity?.supportActionBar?.title=title
     }
 }

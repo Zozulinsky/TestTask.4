@@ -13,10 +13,6 @@ class ContentModule {
     fun provideContentAdapter(): ContentAdapter = ContentAdapter()
 
     @Provides
-    @ContentQualifier("nameRss")
-    fun provideNameRss(contentFragment: ContentFragment): String = contentFragment.getNameRss()
-
-    @Provides
     @ContentQualifier("linkRss")
     fun provideLinkRss(contentFragment: ContentFragment): String = contentFragment.getLinkRss()
 }

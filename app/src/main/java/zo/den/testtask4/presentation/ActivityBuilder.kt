@@ -13,7 +13,5 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [MainModule::class])
     @MainScope
     abstract fun buildMainActivity(): MainActivity
-/*
-    @ContributesAndroidInjector(modules = [AddDialog::class])
-    abstract fun buildAddDialog(): AddDialog*/
+
 }

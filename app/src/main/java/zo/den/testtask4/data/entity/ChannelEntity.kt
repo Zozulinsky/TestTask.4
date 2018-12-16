@@ -13,7 +13,7 @@ class ChannelEntity {
 
     @set:ElementList(name = "item", required = true, inline = true)
     @get:ElementList(name = "item", required = true, inline = true)
-    var itemList: List<ChannelItemEntity> = listOf()
+    var itemList: MutableList<ChannelItemEntity> = mutableListOf()
 
 
     @set:Element(name = "title", required = false)

@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>(){
 
     @field:Inject
-    @field:ContentQualifier
+    @field:ContentQualifier("linkRss")
     lateinit var link: String
 
     @field:Inject
@@ -28,6 +28,8 @@ class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>(){
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+
+        //TODO добавить проверку линка
         contentDao.getRss(HttpUrl.parse(link)!!)
                 .toList()
                 .subscribeOn(Schedulers.io())

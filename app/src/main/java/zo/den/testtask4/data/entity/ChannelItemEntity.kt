@@ -8,7 +8,7 @@ class ChannelItemEntity {
 
     @set:Element(name = "title", required = true)
     @get:Element(name = "title", required = true)
-    var title: String? = null//The title of the item.	Venice Film Festival Tries to Quit Sinking
+    var title: String = ""
     @set:Element(name = "link", required = true)
     @get:Element(name = "link", required = true)
     var link: String? = null//The URL of the item.	http://www.nytimes.com/2002/09/07/movies/07FEST.html

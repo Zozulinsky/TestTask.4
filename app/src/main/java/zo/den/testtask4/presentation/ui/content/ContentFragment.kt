@@ -56,7 +56,7 @@ class ContentFragment : MoxyFragment(), ContentView {
     lateinit var contentAdapter: ContentAdapter
 
     @field:Inject
-    @field:ContentQualifier
+    @field:ContentQualifier("nameRss")
     lateinit var name: String
 
     override fun onViewPrepare(savedInstanceState: Bundle?) {
@@ -72,7 +72,7 @@ class ContentFragment : MoxyFragment(), ContentView {
         }
     }
 
-    override fun showContentList(list: List<ChannelItemEntity>) {
+    override fun showContentList(list: MutableList<ChannelItemEntity>) {
         contentAdapter.list = list
 
     }

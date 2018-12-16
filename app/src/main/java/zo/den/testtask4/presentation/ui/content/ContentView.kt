@@ -8,5 +8,5 @@ import zo.den.testtask4.presentation.model.ContentModel
 
 interface ContentView: BaseView {
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun showContentList(list: List<ChannelItemEntity>)
+    fun showContentList(list: MutableList<ChannelItemEntity>)
 }

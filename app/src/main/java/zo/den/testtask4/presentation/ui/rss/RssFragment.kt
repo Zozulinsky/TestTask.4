@@ -7,17 +7,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.rv_rss.*
 import zo.den.testtask4.R
-import zo.den.testtask4.data.database.LinkDB
-import zo.den.testtask4.data.database.LinkSQLiteOpenHelper
 import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.adapter.RssAdapter
 import zo.den.testtask4.presentation.base.MoxyFragment
+import zo.den.testtask4.presentation.dialog.ActionDialog
 import zo.den.testtask4.presentation.dialog.AddDialog
 import javax.inject.Inject
 import javax.inject.Provider
@@ -50,14 +47,14 @@ class RssFragment : MoxyFragment(), RssView {
         rss_list.layoutManager = LinearLayoutManager(context)
         rssAdapter.listener = object : RssAdapter.OnItemClickListener {
             override fun onItemClick(linkDataEntity: LinkDataEntity) {
-                    presenter.onRss(linkDataEntity)
+                presenter.onRss(linkDataEntity)
             }
 
             override fun onItemLongClick(linkDataEntity: LinkDataEntity) {
+                showActionDialog(ActionDialog.getInstance(linkDataEntity))
 
             }
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,11 +62,28 @@ class RssFragment : MoxyFragment(), RssView {
         setHasOptionsMenu(true)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+
     override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
         if (childFragment is AddDialog && childFragment.tag == "add_rss") {
             childFragment.listener = object : AddDialog.OnAddListener {
-                override fun onAddRss() {
+                override fun onAddRss(name: String, link: String) {
+                    presenter.addRss(name, link)
+                }
+            }
+        }
+        if (childFragment is ActionDialog && childFragment.tag == "action_dialog") {
+            childFragment.listener = object : ActionDialog.OnActionListener {
+                override fun editRss() {
+                    //TODO добавить логику
+                }
+
+                override fun removeRss() {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
             }
         }
@@ -84,19 +98,19 @@ class RssFragment : MoxyFragment(), RssView {
         if (item.itemId == R.id.add) {
             showAddDialog(AddDialog())
         }
-
         return super.onOptionsItemSelected(item)
-
     }
 
     override fun showRssList(list: List<LinkDataEntity>) {
-            rssAdapter.list = list
-
-
+        rssAdapter.list = list
     }
 
-    fun showAddDialog(dialog: AddDialog){
+    fun showAddDialog(dialog: AddDialog) {
         dialog.show(childFragmentManager, "add_rss")
+    }
+
+    fun showActionDialog(dialog: ActionDialog) {
+        dialog.show(childFragmentManager, "action_dialog")
     }
 
 

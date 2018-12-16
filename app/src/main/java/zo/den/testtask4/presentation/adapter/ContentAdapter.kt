@@ -14,16 +14,16 @@ import zo.den.testtask4.presentation.model.ContentModel
 
 class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
 
-    var listener: ContentAdapter.OnItemClickListener? = null
+    var listener: OnItemClickListener? = null
 
-    var list: List<ChannelItemEntity> = emptyList<ChannelItemEntity>()
+    var list: MutableList<ChannelItemEntity> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ContentAdapter.ContentViewHolder {
-        return ContentViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.rss, p0, false))
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ContentViewHolder {
+        return ContentViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.messages, p0, false))
     }
 
     override fun getItemCount(): Int {

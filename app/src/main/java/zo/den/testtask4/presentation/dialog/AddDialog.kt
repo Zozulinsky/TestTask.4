@@ -10,15 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import com.arellomobile.mvp.presenter.InjectPresenter
 import zo.den.testtask4.data.database.LinkDB
 import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.adapter.RssAdapter
 import zo.den.testtask4.presentation.ui.rss.RssFragment
+import zo.den.testtask4.presentation.ui.rss.RssPresenter
 import zo.den.testtask4.presentation.ui.rss.RssQualifier
 import javax.inject.Inject
 
 
-class AddDialog : DialogFragment() {
+class AddDialog : DialogFragment(){
 
     var listener: OnAddListener? = null
 
@@ -30,18 +32,11 @@ class AddDialog : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.setTitle(getString(R.string.title_addDialog))
         val addDialog = inflater.inflate(R.layout.dialog_add, container, false)
-
         val addRss: Button = addDialog.findViewById(R.id.btn_add)
         val inputRss: EditText = addDialog.findViewById(R.id.input_url_rss)
         val inputNameRss: EditText = addDialog.findViewById(R.id.input_name_rss)
         addRss.setOnClickListener({
-            val rss: String = inputRss.text.toString()
-            val name: String = inputNameRss.text.toString()
-            val linkDataEntity: LinkDataEntity? = LinkDataEntity(null, rss, name)
-            val linkDB: LinkDB = LinkDB()
-            if (linkDataEntity != null) {
-                linkDB.insertLink(linkDataEntity)
-            }
+            listener?.onAddRss(inputNameRss.text.toString(), inputRss.text.toString())
             this.dismiss()
         })
         val cancel: Button = addDialog.findViewById(R.id.btn_cancel)
@@ -57,6 +52,6 @@ class AddDialog : DialogFragment() {
     }
 
     interface OnAddListener {
-        fun onAddRss()
+        fun onAddRss(name: String, link: String)
     }
 }

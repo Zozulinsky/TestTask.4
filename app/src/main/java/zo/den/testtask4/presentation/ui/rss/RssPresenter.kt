@@ -72,7 +72,7 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
             dialog.text_checkRss.visibility = TextView.VISIBLE
         } else {
             dialog.text_checkRss.visibility = TextView.INVISIBLE
-            if (link.length == 0) {
+            if (link.length == 0 || link=="http://") {
                 dialog.text_checkRss.setText(R.string.check_urlRSS)
                 dialog.text_checkRss.visibility = TextView.VISIBLE
             } else {
@@ -124,9 +124,9 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
             dialog.text_checkEditRss.visibility = TextView.VISIBLE
         } else {
             dialog.text_checkEditRss.visibility = TextView.INVISIBLE
-            if (linkDataEntity.link.length == 0) {
-                dialog.text_checkRss.setText(R.string.check_urlRSS)
-                dialog.text_checkRss.visibility = TextView.VISIBLE
+            if (linkDataEntity.link.length == 0 || linkDataEntity.link=="http://") {
+                dialog.text_checkEditRss.setText(R.string.check_urlRSS)
+                dialog.text_checkEditRss.visibility = TextView.VISIBLE
             } else {
                 HttpUrl.parse(linkDataEntity.link)?.let {
                     contentDao.checkRss(it)

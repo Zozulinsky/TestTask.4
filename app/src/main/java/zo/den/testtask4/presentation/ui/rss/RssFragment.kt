@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_rss.*
-import kotlinx.android.synthetic.main.fragment_content.*
 import zo.den.testtask4.R
 import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.adapter.RssAdapter
@@ -68,7 +69,6 @@ class RssFragment : MoxyFragment(), RssView {
             presenter.onShowAddDialog()
         }
         return view
-
     }
 
     override fun onAttachFragment(childFragment: Fragment) {

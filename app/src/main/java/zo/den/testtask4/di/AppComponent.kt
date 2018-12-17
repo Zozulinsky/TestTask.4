@@ -1,7 +1,6 @@
 package zo.den.testtask4.di
 
 import android.app.Application
-import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

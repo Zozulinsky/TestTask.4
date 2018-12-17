@@ -43,12 +43,10 @@ class RssAdapter : RecyclerView.Adapter<RssAdapter.RssViewHolder>() {
             itemView.setOnClickListener(View.OnClickListener {
                 listener?.onItemClick(linkDataEntity)
             })
-            itemView.setOnLongClickListener(
-                    {
-                        listener?.onItemLongClick(linkDataEntity)
-                        true
-                    }
-            )
+            itemView.setOnLongClickListener {
+                listener?.onItemLongClick(linkDataEntity)
+                true
+            }
         }
     }
 

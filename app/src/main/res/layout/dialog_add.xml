@@ -11,7 +11,7 @@
         android:paddingBottom="@dimen/paddingBottom"
         android:text="@string/label_addRss"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextInDialog"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -34,8 +34,7 @@
             android:layout_weight="1"
             android:inputType="textUri"
             android:text="@string/start_url"
-            android:textColor="#000000"
-            />
+            android:textColor="@color/colorTextInDialog" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,16 +57,16 @@
             android:layout_weight="1"
             android:hint="@string/example_name_rss"
             android:inputType="text"
-            android:textColor="#000000" />
+            android:textColor="@color/colorTextInDialog" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
         android:divider="@drawable/separator_vertical"
         android:dividerPadding="4dp"
+        android:orientation="horizontal"
         android:showDividers="middle">
 
         <Button
@@ -75,18 +74,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_addbtn"
             android:background="@color/colorBtnActionDlg"
-            android:textColor="@color/colorTextOnView"/>
+            android:text="@string/text_addbtn"
+            android:textColor="@color/colorTextOnView" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_cancelbtn"
             android:background="@color/colorBtnActionDlg"
-            android:textColor="@color/colorTextOnView"/>
+            android:text="@string/text_cancelbtn"
+            android:textColor="@color/colorTextOnView" />
 
     </LinearLayout>
 

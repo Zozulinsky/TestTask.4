@@ -1,23 +1,15 @@
 package zo.den.testtask4.presentation.ui.rss
 
-import android.content.Context
-import android.support.design.widget.Snackbar
-import android.webkit.URLUtil
-import android.widget.Toast
 import com.arellomobile.mvp.InjectViewState
-import io.reactivex.Single
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
-import zo.den.testtask4.R
 import zo.den.testtask4.data.dao.RssDao
-import zo.den.testtask4.data.database.LinkDB
 import zo.den.testtask4.data.entity.LinkDataEntity
 import zo.den.testtask4.presentation.ScreenFactory
 import zo.den.testtask4.presentation.base.MoxyPresenter
-import zo.den.testtask4.presentation.dialog.AddDialog
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
 

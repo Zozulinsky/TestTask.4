@@ -1,9 +1,8 @@
-package zo.den.testtask2.presentation.base
+package zo.den.testtask4.presentation.base
 
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import dagger.android.AndroidInjection
-import zo.den.testtask4.presentation.base.BaseView
 
 abstract class MoxyActivity : MvpAppCompatActivity(), BaseView {
 

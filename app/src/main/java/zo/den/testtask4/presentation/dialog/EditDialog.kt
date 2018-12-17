@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.dialog_edit.*
 import zo.den.testtask4.R
 import zo.den.testtask4.data.entity.LinkDataEntity
 
-
 class EditDialog : DialogFragment() {
 
     companion object {
@@ -35,8 +34,8 @@ class EditDialog : DialogFragment() {
         val data: LinkDataEntity? = arguments?.getParcelable(KEY_EDIT)
         if (data != null) {
             edit_name_rss.setText(data.name)
-            edit_url_rss.setSelection(edit_url_rss.text.length)
             edit_url_rss.setText(data.link)
+            edit_url_rss.setSelection(edit_url_rss.text.length)
         }
         btn_edit.setOnClickListener {
             if (data != null)

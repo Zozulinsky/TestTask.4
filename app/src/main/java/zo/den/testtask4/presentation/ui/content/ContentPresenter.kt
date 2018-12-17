@@ -1,5 +1,7 @@
 package zo.den.testtask4.presentation.ui.content
 
+import android.content.Intent
+import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,10 +12,6 @@ import zo.den.testtask4.data.entity.ChannelItemEntity
 import zo.den.testtask4.presentation.base.MoxyPresenter
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
-import android.support.v4.content.ContextCompat.startActivity
-import android.content.Intent
-import android.net.Uri
-
 
 @InjectViewState
 class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>() {
@@ -64,6 +62,5 @@ class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>() {
                     }
                     ).toCompositeDisposable()}
         else {viewState.showNoConnection()}
-
     }
 }

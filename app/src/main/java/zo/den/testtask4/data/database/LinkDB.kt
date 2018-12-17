@@ -8,6 +8,12 @@ import javax.inject.Singleton
 @Singleton
 class LinkDB @Inject constructor() {
 
+    companion object {
+        private const val TABLE_NAME = "links"
+        private const val COLUMN_NAME = "name"
+        private const val COLUMN_LINK = "link"
+    }
+
     @Inject
     lateinit var sqLiteOpenHelper: LinkSQLiteOpenHelper
 
@@ -15,14 +21,14 @@ class LinkDB @Inject constructor() {
 
         return synchronized(this) {
             sqLiteOpenHelper.writableDatabase.use {
-                it.query("links", null, null, null,
-                        null, null, "name")
+                it.query(TABLE_NAME, null, null, null,
+                        null, null, COLUMN_NAME)
                         .use { cursor ->
                             val list = arrayListOf<LinkDataEntity>()
                             while (cursor.moveToNext()) {
                                 val linkEntity = LinkDataEntity(cursor.getInt(cursor.getColumnIndex("id")),
-                                        cursor.getString(cursor.getColumnIndex("name")),
-                                        cursor.getString(cursor.getColumnIndex("link")))
+                                        cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                                        cursor.getString(cursor.getColumnIndex(COLUMN_LINK)))
                                 list.add(linkEntity)
                             }
                             list
@@ -35,9 +41,9 @@ class LinkDB @Inject constructor() {
     fun insertLink(linkEntity: LinkDataEntity) {
         synchronized(this) {
             sqLiteOpenHelper.writableDatabase.use {
-                it.insert("links", null, ContentValues().apply {
-                    put("name", linkEntity.name)
-                    put("link", linkEntity.link)
+                it.insert(TABLE_NAME, null, ContentValues().apply {
+                    put(COLUMN_NAME, linkEntity.name)
+                    put(COLUMN_LINK, linkEntity.link)
                 })
             }
         }
@@ -46,9 +52,9 @@ class LinkDB @Inject constructor() {
     fun updateLink(linkEntity: LinkDataEntity) {
         synchronized(this) {
             sqLiteOpenHelper.writableDatabase.use {
-                it.update("links", ContentValues().apply {
-                    put("name", linkEntity.name)
-                    put("link", linkEntity.link)
+                it.update(TABLE_NAME, ContentValues().apply {
+                    put(COLUMN_NAME, linkEntity.name)
+                    put(COLUMN_LINK, linkEntity.link)
                 }, "id=?", arrayOf(linkEntity.id.toString()))
             }
         }
@@ -57,7 +63,7 @@ class LinkDB @Inject constructor() {
     fun deleteLink(linkEntity: LinkDataEntity) {
         synchronized(this) {
             sqLiteOpenHelper.writableDatabase.use {
-                it.delete("links", "id=?", arrayOf(linkEntity.id.toString()))
+                it.delete(TABLE_NAME, "id=?", arrayOf(linkEntity.id.toString()))
             }
         }
     }

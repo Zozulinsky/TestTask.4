@@ -32,7 +32,6 @@ class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() 
         p0.bind(list[p1])
     }
 
-
     inner class ContentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var cardView: CardView? = null
 
@@ -41,10 +40,9 @@ class ContentAdapter : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() 
             itemView.title_message.text = channelItemEntity.title
             itemView.date.text = channelItemEntity.pubDate
             itemView.content.text = channelItemEntity.description
-            itemView.setOnClickListener({
+            itemView.setOnClickListener {
                 listener?.onItemClick(channelItemEntity)
-            })
-
+            }
         }
     }
 

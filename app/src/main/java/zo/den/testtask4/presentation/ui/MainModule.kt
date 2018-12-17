@@ -2,13 +2,11 @@ package zo.den.testtask4.presentation.ui
 
 import dagger.Module
 import dagger.Provides
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
-
 
 @Module(includes = [MainFragmentBuilder::class])
 class MainModule {

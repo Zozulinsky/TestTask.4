@@ -7,4 +7,5 @@
     <color name="colorTextOnView">#ffffff</color>
     <color name="colorSeparator">#ffffff</color>
     <color name="colorBtnActionDlg">#e35183</color>
+    <color name="colorTextInDialog">#000000</color>
 </resources>

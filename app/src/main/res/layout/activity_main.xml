@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            app:titleTextColor="#ffffff"/>
+            app:titleTextColor="@color/colorTextOnView" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -30,7 +30,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBar" />
-
-
 
 </android.support.constraint.ConstraintLayout>

@@ -13,6 +13,16 @@
         android:textAlignment="center"
         android:textColor="@color/colorTextInDialog"
         android:textSize="18sp" />
+    <TextView
+        android:id="@+id/text_checkEditRss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/paddingBottom"
+        android:text="@string/check_RSS"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        android:textColor="@color/accent_pressed"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

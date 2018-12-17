@@ -13,6 +13,7 @@ import zo.den.testtask4.presentation.base.MoxyPresenter
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
 
+
 @InjectViewState
 class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
 
@@ -56,7 +57,9 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
     }
 
     fun onAddRss(name: String, link: String) {
+
         val linkDataEntity = LinkDataEntity(null, name, link)
+
         rssDao.addRssLink(linkDataEntity)
                 .andThen(rssDao.getRssLinks())
                 .toList()
@@ -90,6 +93,4 @@ class RssPresenter @Inject constructor() : MoxyPresenter<RssView>() {
     fun onOpenEditLinkDialog(linkDataEntity: LinkDataEntity) {
         viewState.showEditDialog(linkDataEntity)
     }
-
-
 }

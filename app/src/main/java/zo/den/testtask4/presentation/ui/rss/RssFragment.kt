@@ -76,7 +76,7 @@ class RssFragment : MoxyFragment(), RssView {
         if (childFragment is AddDialog && childFragment.tag == TAG_ADD_DIALOG) {
             childFragment.listener = object : AddDialog.OnAddListener {
                 override fun onAddRss(name: String, link: String) {
-                    presenter.onAddRss(name, link)
+                    presenter.onAddRss(childFragment,name, link)
                 }
             }
         }
@@ -95,7 +95,7 @@ class RssFragment : MoxyFragment(), RssView {
         if (childFragment is EditDialog && childFragment.tag == TAG_EDIT_DIALOG ) {
             childFragment.listener = object : EditDialog.OnEditListener {
                 override fun onEditRss(linkDataEntity: LinkDataEntity) {
-                    presenter.onUpdateLinkDataEntity(linkDataEntity)
+                    presenter.onUpdateLinkDataEntity(childFragment, linkDataEntity)
                 }
             }
         }

@@ -13,4 +13,5 @@ interface RssDao {
 
     fun getRssLinks() : Observable<LinkDataEntity>
 
+
 }

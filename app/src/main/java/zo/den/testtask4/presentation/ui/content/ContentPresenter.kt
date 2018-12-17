@@ -12,7 +12,6 @@ import zo.den.testtask4.data.entity.ChannelItemEntity
 import zo.den.testtask4.presentation.base.MoxyPresenter
 import zo.den.testtask4.presentation.ui.MainQualifier
 import javax.inject.Inject
-
 @InjectViewState
 class ContentPresenter @Inject constructor() : MoxyPresenter<ContentView>() {
 

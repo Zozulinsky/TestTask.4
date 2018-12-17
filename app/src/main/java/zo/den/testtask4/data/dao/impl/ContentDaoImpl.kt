@@ -1,11 +1,13 @@
 package zo.den.testtask4.data.dao.impl
 
 import io.reactivex.Observable
+import io.reactivex.Single
 import okhttp3.HttpUrl
+import okhttp3.ResponseBody
+import retrofit2.Response
 import zo.den.testtask4.data.dao.ContentDao
-import zo.den.testtask4.data.network.api.RssApi
 import zo.den.testtask4.data.entity.ChannelItemEntity
-import java.lang.Exception
+import zo.den.testtask4.data.network.api.RssApi
 import javax.inject.Inject
 
 class ContentDaoImpl @Inject constructor() : ContentDao {
@@ -23,5 +25,10 @@ class ContentDaoImpl @Inject constructor() : ContentDao {
                         }
                     }
                 }
+    }
+
+    override fun checkRss(httpUrl: HttpUrl): Single<Response<ResponseBody>> {
+        return rssApi.checkRss(httpUrl)
+
     }
 }

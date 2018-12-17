@@ -42,13 +42,7 @@ class EditDialog : DialogFragment() {
         btn_edit.setOnClickListener {
             val nameRss = edit_name_rss.text.toString()
             val urlRss = edit_url_rss.text.toString()
-            if (data != null && Patterns.WEB_URL.matcher(urlRss).matches() && nameRss.length > 0) {
-                listener?.onEditRss(LinkDataEntity(data.id, nameRss, urlRss))
-                text_checkEditRss.visibility = TextView.INVISIBLE
-                this.dismiss()
-            } else {
-                text_checkEditRss.visibility = TextView.VISIBLE
-            }
+            listener?.onEditRss(LinkDataEntity(data?.id, nameRss, urlRss))
         }
         btn_cancel.setOnClickListener {
             this.dismiss()

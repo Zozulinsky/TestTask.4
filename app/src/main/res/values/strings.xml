@@ -21,5 +21,7 @@
     <string name="label_addRss"><b>Добавить RSS</b></string>
     <string name="label_editRss"><b>Изменить RSS</b></string>
     <string name="start_url">http://</string>
-    <string name="check_RSS">Проверьте заполненные поля</string>
+    <string name="check_RSS">RSS недоступно</string>
+    <string name="check_nameRSS">Введите имя RSS</string>
+    <string name="check_urlRSS">Введите адрес RSS</string>
 </resources>

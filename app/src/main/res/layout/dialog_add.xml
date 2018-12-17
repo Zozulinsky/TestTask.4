@@ -19,36 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/paddingBottom"
-        android:text="@string/check_RSS"
         android:textAlignment="center"
         android:visibility="invisible"
         android:textColor="@color/accent_pressed"
         android:textSize="16sp" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center_vertical|right"
-            android:text="@string/ladel_urlRss" />
-
-        <EditText
-            android:id="@+id/input_url_rss"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:inputType="textUri"
-            android:text="@string/start_url"
-            android:textColor="@color/colorTextInDialog" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,6 +44,29 @@
             android:layout_weight="1"
             android:hint="@string/example_name_rss"
             android:inputType="text"
+            android:textColor="@color/colorTextInDialog" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical|right"
+            android:text="@string/ladel_urlRss" />
+
+        <EditText
+            android:id="@+id/input_url_rss"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="textUri"
+            android:text="@string/start_url"
             android:textColor="@color/colorTextInDialog" />
     </LinearLayout>
 
